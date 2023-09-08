@@ -1,0 +1,100 @@
+.manage-product-content {
+    padding: 0 120px;
+
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .manage-product-heading {
+            margin: 30px 0;
+            font-size: 26px;
+            text-transform: uppercase;
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            button {
+                height: 40px;
+                padding: 0 40px;
+            }
+    
+            .select-heading {
+                padding: 6px;
+                margin-right: 10px;
+                border-radius: 7px;
+            }
+        }
+
+    }
+
+    .table-product-users {
+        margin-left: 20px;
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 50px;
+
+        tbody {
+            tr {
+                td {
+                    border: 1px solid black;
+                    text-align: center;
+                }
+            }
+        }
+
+        thead {
+            tr {
+                th {
+                    border: 1px solid black;
+                    text-align: center;
+                }
+            }
+        }
+
+        .update {
+            padding: 6px 25px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        .delete {
+            padding: 6px 25px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        .image-product {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin: 10px;
+            border: 1px solid gray;
+        }
+    }
+}
+
+.modal-create-product {
+    width: 800px !important;
+}
+
+.modal-dialog {
+    max-width: none !important;
+}
+
+.image-create {
+    width: 80px;
+    height: 80px;
+    border: 1px solid gray;
+    object-fit: cover;
+}
+
+.loading {
+    text-align: center;
+}
+
+.panigate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

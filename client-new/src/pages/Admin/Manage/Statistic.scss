@@ -1,0 +1,66 @@
+.container-statistic {
+    .content {
+        background-color: #f5f5f5;
+        h3 {
+            padding: 25px 0;
+        }
+        .top {
+            display: flex;
+            .item {
+                margin-right: 20px;
+                background-color: white;
+                width: 180px;
+                height: 110px;
+                border-radius: 6px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                .left {
+                    i {
+                        padding: 10px;
+                        border-radius: 50%;
+                        margin-right: 5px;
+                    }
+
+                    .order {
+                        background-color: rgb(114, 193, 114);
+                    }
+
+                    .inventory {
+                        background-color: rgb(238, 185, 194);
+                    }
+
+                    .user {
+                        background-color: rgb(99, 99, 245);
+                    }
+
+                    .renvenue {
+                        background-color: rgb(239, 72, 72);
+                    }
+                }
+
+                .right {
+                    margin-left: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    .title {
+                        color: #757575;
+                    }
+
+                    .quanlity {
+                        margin-left: 5px;
+                        font-weight: 500;
+                        font-size: 18px;
+                    }
+
+                }
+            }
+
+        }
+
+        .center {
+            padding: 30px 10px;
+        }
+    }
+}

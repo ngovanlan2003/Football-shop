@@ -1,0 +1,113 @@
+.register, .login {
+    text-decoration: none;
+    color:black;
+}
+
+.register {
+    margin-left: 20px;
+    padding-right: 10px;
+    border-right: 1px solid gray;
+}
+
+.login {
+    padding-left: 10px;
+
+}
+
+.content {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    .content-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: 90vh;
+        margin-top: 100px;
+
+        .description, .content-logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-logo i {
+            font-size: 50px;
+             margin-bottom: 20px;
+
+             
+        }
+
+        .description {
+            font-weight: 600 ;
+            font-size: 20px;
+         }
+        .content-logo {
+            .name {
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: 30px;
+                margin-bottom: 20px;
+             }
+
+             
+        }
+    }
+    
+    .content-right {
+        
+        .register-container {
+            margin-top: 50px;
+            padding: 15px;
+            width: 450px;
+            border: 1px solid gray;
+            height: auto;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+            .item {
+                display: flex;
+                flex-direction: column;
+                margin: 10px 0;
+                
+                label {
+                    margin-bottom: 6px;
+                    font-weight: 500;
+                }
+
+                input {
+                    padding: 6px 10px;
+                    outline: none;
+                }
+            }
+
+            .button-submit {
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+
+        .login-container {
+            width: 400px;
+            background-color: white;
+            border: 1px solid black;
+            padding: 15px;
+            margin-top: 100px;
+            .item  {
+                display: flex;
+                flex-direction: column;
+                margin: 15px 0;
+
+                input {
+                    margin-top: 6px;
+                    padding: 6px 12px;
+                    outline: none;
+                }
+            }
+
+            button {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,25 @@
+.navigators-container {
+    border-bottom: 1px solid gray;
+    .menu {
+        padding: 0 80px;
+        .menu-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            .menu-item {
+                padding: 10px 20px;
+                border-right: 1px solid gray;
+                .active {
+                    text-decoration: none;
+                    color: chartreuse;
+                }
+                a {
+                    text-decoration: none;
+                    color: black;
+                    font-weight: 600;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

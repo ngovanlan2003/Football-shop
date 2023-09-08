@@ -1,0 +1,72 @@
+.profile-container {
+    background-color: #f5f5f5;
+    .profile-content {
+        background-color: #fff;
+        min-height: 100vh;
+        .profile-header {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #efefef;
+        }
+        .content-list {
+            .item {
+                display: flex;
+                flex-direction: column;
+                margin: 10px 0;
+
+                label {
+                    margin-left: 8px;
+                    color: rgba(85,85,85,.8);
+                }
+                input {
+                    padding: 6px 10px;
+                    margin-top: 6px;
+                    width: 100%;
+                    margin-left: 10px;
+                }
+            }
+
+            .submit {
+                margin-top: 10px;
+                margin-left: 8px;
+                button {
+                    margin-right: 10px;
+                }
+            }
+
+            .avatar {
+                .avatar-content {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    align-content: center;
+                    .avatar-icon {
+                        color: #fff;
+                        background-color: #d3d6db;
+                        border-radius: 50%;
+                        font-size: 70px;
+                        padding: 25px 30px;
+                        margin-top: 15px;
+                    }
+
+                    .image-avatar {
+                        margin-top: 20px;
+                        width: 120px;
+                        height: 120px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+
+                label {
+                    width: 100px;
+                    border: 1px solid #e8e8e8;
+                    padding: 6px 15px;
+                    margin-top: 10px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,78 @@
+.container-manage-order {
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .manage-order-heading {
+            margin: 30px 0;
+            font-size: 26px;
+            text-transform: uppercase;
+        }
+
+        button {
+            height: 40px;
+            padding: 0 40px;
+        }
+    }
+
+    .table-order-users {
+        margin-left: 20px;
+        width: 100%;
+        border-collapse: collapse;
+
+        tbody {
+            tr {
+                td {
+                    border: 1px solid black;
+                    text-align: center;
+                }
+            }
+        }
+
+        thead {
+            tr {
+                th {
+                    border: 1px solid black;
+                    text-align: center;
+                }
+            }
+        }
+
+        .update {
+            padding: 6px 25px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        .delete {
+            padding: 6px 25px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        .image-order {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin: 10px;
+            border: 1px solid gray;
+        }
+    }
+}
+
+//modal
+.detail-order {
+    .item {
+        margin: 10px 0;
+        label {
+            margin-right: 10px;
+            color: #757575;
+        }
+    }
+
+    .image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+}

@@ -1,0 +1,61 @@
+.manage-user-content {
+    padding: 0 120px;
+
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .manage-users-heading {
+            margin: 30px 0;
+            font-size: 26px;
+            text-transform: uppercase;
+        }
+
+        button {
+            height: 40px;
+            padding: 0 40px;
+        }
+    }
+
+    .table-manage-users {
+        margin-left: 20px;
+        width: 100%;
+        border-collapse: collapse;
+
+        tbody {
+            tr {
+                td {
+                    border: 1px solid black;
+                    text-align: center;
+                }
+            }
+        }
+
+        thead {
+            tr {
+                th {
+                    border: 1px solid black;
+                    text-align: center;
+                }
+            }
+        }
+
+        .update {
+            padding: 6px 25px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        .delete {
+            padding: 6px 25px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+    }
+
+    .panigate {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    }
+}

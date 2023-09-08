@@ -1,0 +1,77 @@
+.container-vefify-email {
+    .heading {
+        height: 80px;
+        background-color: chartreuse;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        i {
+            margin-right: 5px;
+            font-size: 20px;
+        }
+
+        span {
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 18px;
+        }
+    }
+    .content {
+        padding-top: 30px;
+
+        .back {
+            color: #999b9f;
+            cursor: pointer;
+            i {
+                margin-right: 8px;
+                font-size: 20px;
+            }
+
+            span {
+                font-size: 20px;
+                font-weight: 500;
+            }
+
+            &:hover {
+                color: black;
+            }
+        }
+
+        .center {
+            margin-top: 50px;
+            margin-left: 100px;
+
+            .verify {
+                display: flex;
+                flex-direction: column;
+                width: 400px;
+                .title {
+                    margin-top: 20px;
+
+
+                }
+
+                input {
+                    outline: none;
+                    border: 1px solid  #f0b90b;
+                    padding: 10px;
+                    border-radius: 4px;
+                    margin: 5px 0;
+                }
+
+                .description {
+                    margin-top: 10px;
+                    font-size: 14px;
+                }
+
+                button {
+                    margin-top: 15px;
+                    border: none;
+                    padding: 10px 0;
+                    border-radius: 6px;
+                }
+            }
+        }
+    }
+}

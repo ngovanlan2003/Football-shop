@@ -1,0 +1,29 @@
+.admin-header {
+    height: 80px;
+    background-color: chartreuse;
+    width: 100%;
+    padding: 0 120px;
+
+    .content-header {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        justify-content: space-between;
+        .left {
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 18px;
+
+            i {
+                margin-right: 5px;
+                font-size: 20px;
+            }
+        }
+
+        .right {
+            span {
+                font-weight: 600;
+            }
+        }
+    }
+}
