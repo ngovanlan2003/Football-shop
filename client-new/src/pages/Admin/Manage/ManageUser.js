@@ -175,47 +175,49 @@ const ManageUser = (props) => {
                 </div>
 
                 {/* Modal create user */}
-                <Modal show={show} onHide={handleClose} >
-                        <Modal.Header closeButton>
-                        <Modal.Title>Thêm mới người dùng</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <div className="row">
-                                <div className="mb-3 col-6">
-                                    <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" 
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />
+                <div className="modal">
+                    <Modal show={show} onHide={handleClose} >
+                            <Modal.Header closeButton>
+                            <Modal.Title>Thêm mới người dùng</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <div className="row">
+                                    <div className="mb-3 col-6">
+                                        <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
+                                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" 
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="mb-3 col-6">
+                                        <label htmlFor="exampleFormControlInput1" className="form-label">Tên</label>
+                                        <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Họ và tên"
+                                            onChange={(e) => setName(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="mb-3 col-6">
+                                        <label htmlFor="exampleFormControlInput1" className="form-label">Mật khẩu</label>
+                                        <input type="password" className="form-control" id="exampleFormControlInput1" placeholder="Mật khẩu" 
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="mb-3 col-6">
+                                        <label htmlFor="exampleFormControlInput1" className="form-label">Điện thoại</label>
+                                        <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Số điện thoại" 
+                                            onChange={(e) => setPhone(e.target.value)}
+                                        />
+                                    </div>
                                 </div>
-                                <div className="mb-3 col-6">
-                                    <label htmlFor="exampleFormControlInput1" className="form-label">Tên</label>
-                                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Họ và tên"
-                                        onChange={(e) => setName(e.target.value)}
-                                    />
-                                </div>
-                                <div className="mb-3 col-6">
-                                    <label htmlFor="exampleFormControlInput1" className="form-label">Mật khẩu</label>
-                                    <input type="password" className="form-control" id="exampleFormControlInput1" placeholder="Mật khẩu" 
-                                        onChange={(e) => setPassword(e.target.value)}
-                                    />
-                                </div>
-                                <div className="mb-3 col-6">
-                                    <label htmlFor="exampleFormControlInput1" className="form-label">Điện thoại</label>
-                                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Số điện thoại" 
-                                        onChange={(e) => setPhone(e.target.value)}
-                                    />
-                                </div>
-                            </div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleAddNewUser}>
-                            Thêm mới
-                        </Button>
-                        </Modal.Footer>
-                </Modal>
+                            </Modal.Body>
+                            <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="primary" onClick={handleAddNewUser}>
+                                Thêm mới
+                            </Button>
+                            </Modal.Footer>
+                    </Modal>
+                </div>
 
                 {/* Modal update user */}
                 <Modal show={showUpdate} onHide={handleUpdateClose} >

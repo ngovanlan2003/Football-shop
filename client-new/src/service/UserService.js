@@ -38,9 +38,13 @@ const getDetailUser = (userId, access_token) => {
     })
 }
 
-const refreshToken = () => {
+const refreshToken = (token) => {
     return axios.post(`/user/refresh-token`, {
         withCredentials: true
+    },{
+        headers: {
+            token: `Bearer ${token}`
+        }
     })
 }
 

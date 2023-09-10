@@ -103,7 +103,8 @@ const Information = (props) => {
             toast.success("Đăng nhập thành công!")
             setEmailLogin("")
             setPasswordLogin("")
-            localStorage.setItem("access_token", JSON.stringify(res.access_token))
+            localStorage.setItem("access_token", JSON.stringify(res?.access_token))
+            localStorage.setItem("refresh_token", JSON.stringify(res?.refresh_token))
             if(res.access_token) {
                 const decoded = jwt_decode(res.access_token)
                 if(decoded.id) {
@@ -111,7 +112,6 @@ const Information = (props) => {
                 }
             }
 
-            console.log("props.detailUser.isAdmin: ", props.detailUser.isAdmin);
             if(props.detailUser.isAdmin) {
                 navigate("/admin")
             }else {
@@ -259,4 +259,4 @@ function mapDispatchToProps (dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Information)
+export default connect(mapStateToProps, mapDispatchToProps)(Information) 

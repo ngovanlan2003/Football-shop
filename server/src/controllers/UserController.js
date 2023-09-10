@@ -139,7 +139,7 @@ const loginUser = async (req, res) => {
             secure: false,
             samsite: 'strict'
         })
-        return res.status(200).json(newData)
+        return res.status(200).json(data)
     } catch (err) {
         return res.status(404).json({
             message: 'err from server',
@@ -150,7 +150,7 @@ const loginUser = async (req, res) => {
 
 const refreshToken = async (req, res) => {
     try {
-        let token = req.cookies.refresh_token
+        let token = req.headers.token.split(' ')[1]
         if(!token) {
             return res.status(200).json({
                 status: 'ERR',

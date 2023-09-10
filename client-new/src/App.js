@@ -7,7 +7,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  json
 } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,7 +41,6 @@ function App(props) {
     let decoded = {}
     if(storeageData && checkJson(storeageData)) {
       storeageData = JSON.parse(storeageData)
-
       decoded = jwt_decode(storeageData)
     }
     return {decoded, storeageData}
@@ -50,9 +50,18 @@ function App(props) {
   axiosJwt.interceptors.request.use(async function (config) {
     let {  decoded } = handleDecoded()
     const currentTime = new Date()
+    let storeageRefreshTokenData = localStorage.getItem("refresh_token")
+    const refreshToken = JSON.parse(storeageRefreshTokenData)
+
+    const decodeRefreshToken = jwt_decode(refreshToken)
+
     if(decoded.exp < currentTime.getTime() / 1000) {
-      let data = await refreshToken()
-      config.headers['token'] = `Bearer ${data.access_token}`
+      if(decodeRefreshToken?.exp > currentTime.getTime() / 1000) {
+        let data = await refreshToken(refreshToken)
+        config.headers['token'] = `Bearer ${data.access_token}`
+      }else {
+        props.resetUser()
+      }
     }
 
     return config;
@@ -127,7 +136,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-      getDetailUser: (id, token) => dispatch(actions.fetchDetailUser(id, token))
+      getDetailUser: (id, token) => dispatch(actions.fetchDetailUser(id, token)),
+      resetUser: () => dispatch(actions.resetUser())
   }
 }
 

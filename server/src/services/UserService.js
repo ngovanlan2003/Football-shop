@@ -319,8 +319,6 @@ const loginUser = (userLogin) => {
                     })
                 }
             }
-            
-
         } catch (e) {
             reject(e)
         }
