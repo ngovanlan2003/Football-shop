@@ -19,10 +19,11 @@ const ManageUser = (props) => {
     const [phone, setPhone] = useState('')
     const [userDelete, setUserDelete] = useState({})
     const [userUpdate, setUserUpdate] = useState({})
+    const [page, setPage] = useState(0)
 
     useEffect( () => {
-        props.getAllUsers()
-    }, [])
+        props.getAllUsers(page)
+    }, [page])
 
 
     const handleClose = () => setShow(false);
@@ -97,6 +98,12 @@ const ManageUser = (props) => {
 
     }
 
+    const handlePageClick = (event) => {
+        if(event) {
+            setPage(event.selected)
+        }
+    }
+
     return (
         <div>
             <AdminHeader />
@@ -147,10 +154,10 @@ const ManageUser = (props) => {
                 <div className="panigate">
                     <ReactPaginate
                         nextLabel="next >"
-                        // onPageChange={handlePageClick}
+                        onPageChange={handlePageClick}
                         pageRangeDisplayed={3}
                         marginPagesDisplayed={2}
-                        pageCount={15}
+                        pageCount={props.maxPage ? props.maxPage : 5}
                         previousLabel="< previous"
                         pageClassName="page-item"
                         pageLinkClassName="page-link"
@@ -281,13 +288,14 @@ const ManageUser = (props) => {
 
 function mapStateToProps (state) {
     return  {
-        dataUsers: state.admin.users
+        dataUsers: state.admin.users,
+        maxPage: state.admin.maxPage
     }
 }
 
 function mapDispatchToProps (dispatch) {
     return {
-        getAllUsers: () => dispatch(actions.getAllUsers())
+        getAllUsers: (page) => dispatch(actions.getAllUsers(page))
     }
 }
 

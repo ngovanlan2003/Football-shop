@@ -7,7 +7,7 @@ const Comment = (props) => {
             <div className="container">
                 <div className='wrapper'>
                     <div className="my-3">
-                        <div class="fb-comments" data-href={dataHref} data-width={width} data-numposts="5"></div>
+                        <div className="fb-comments" data-href={dataHref} data-width={width} data-numposts="5"></div>
                     </div>
                 </div>
             </div>

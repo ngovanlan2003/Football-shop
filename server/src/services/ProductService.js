@@ -155,12 +155,20 @@ const getAllProduct = (limit, page, sort, filter) => {
 const getAllProductType = (limit, page, sort, filter, type) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let totalProduct = await Product.count()
+            let totalProduct
+            if(!type) {
+                totalProduct = await Product.count()
+            }else {
+                totalProduct = await Product.count({
+                    type: type
+                })
+            }
+
             let getAllProduct = {}
             if(!type) {
-                getAllProduct = await Product.find().limit(limit).skip(page * limit)
+                getAllProduct = await Product.find().limit(limit).skip(page * limit).sort([['updatedAt', 'descending']])
             }else {
-                getAllProduct = await Product.find({type: type}).limit(limit).skip(page * limit)
+                getAllProduct = await Product.find({type: type}).limit(limit).skip(page * limit).sort([['updatedAt', 'descending']])
             }
 
 

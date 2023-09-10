@@ -6,6 +6,7 @@ import {Modal, Button} from 'react-bootstrap';
 import { getAllOrderService } from "../../../service/AdminService"
 import { deleteOrderService } from "../../../service/OrderService"
 import { toast } from "react-toastify";
+import ReactPaginate from "react-paginate";
 
 const ManageOrder = () => {
     const [dataOrder, setDataOrder] = useState([])
@@ -14,7 +15,8 @@ const ManageOrder = () => {
     const [showDetailModal, setShowDetailModal] = useState(false)
     const [idDeleteProduct, setIdDeleteProduct] = useState("")
     const [detailOrder, setDetailOrder] = useState({})
-
+    const [maxPage, setMaxPage] = useState(0)
+    const [page, setPage] = useState(0)
 
     const handleShowDelete = (orderId) => {
         setIdDeleteProduct(orderId)
@@ -38,15 +40,16 @@ const ManageOrder = () => {
 
 
     useEffect(() => {
-        getAllOrder()
-    }, [])
+        getAllOrder(page)
+    }, [page])
 
-    const getAllOrder = async () => {
-        let res = await getAllOrderService()
+    const getAllOrder = async (page) => {
+        let res = await getAllOrderService(page)
 
         if(res && res.status === 'OK' && res.data) {
             setDataOrder(res.data)
             setTotalOrder(res.totalOrder)
+            setMaxPage(res.maxPage)
         }else {
             toast.error("Server đang gặp sự cố! Vui lòng thử lại sau")
         }
@@ -69,6 +72,12 @@ const ManageOrder = () => {
         }
     }
 
+    const handlePageClick = (event) => {
+        if(event) {
+            setPage(event.selected)
+        }
+    }
+
     return (
         <div className="container-manage-order">
             <AdminHeader />
@@ -82,7 +91,7 @@ const ManageOrder = () => {
                     <thead>
                         <tr>
                             <th>Tên người dùng</th>
-                            <th>Tên sản phẩm</th>
+                            <th style={{width: '300px'}}>Tên sản phẩm</th>
                             <th>Hình ảnh</th>
                             <th>Đơn Giá</th>
                             <th>Số lượng</th>
@@ -130,6 +139,28 @@ const ManageOrder = () => {
                         }
                     </tbody>
                 </table>
+                <div className="panigate my-4">
+                    <ReactPaginate
+                        nextLabel="next >"
+                        onPageChange={handlePageClick}
+                        pageRangeDisplayed={3}
+                        marginPagesDisplayed={2}
+                        pageCount={maxPage ? maxPage : 5}
+                        previousLabel="< previous"
+                        pageClassName="page-item"
+                        pageLinkClassName="page-link"
+                        previousClassName="page-item"
+                        previousLinkClassName="page-link"
+                        nextClassName="page-item"
+                        nextLinkClassName="page-link"
+                        breakLabel="..."
+                        breakClassName="page-item"
+                        breakLinkClassName="page-link"
+                        containerClassName="pagination"
+                        activeClassName="active"
+                        renderOnZeroPageCount={null}
+                    />
+                </div>
                 </div>
            </div>
            {/* modal delete  */}
@@ -226,6 +257,8 @@ const ManageOrder = () => {
                 </Button>
                 </Modal.Footer>
            </Modal>
+
+
         </div>
     )
 }

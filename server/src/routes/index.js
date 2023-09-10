@@ -9,11 +9,15 @@ const routes = (app) => {
     app.use('/api/order', OrderRouter)
     app.use('/api/report', ReportRouter)
     app.use((req, res, next) => {
-        res.status(404)
-        res.json({
-            status: "ERR",
-            message: "404 NOT FOUND!"
-        })
+        try {
+            res.status(404)
+            res.json({
+                status: "ERR",
+                message: "404 NOT FOUND!"
+            })
+        } catch (error) {
+            console.log('error: ', error); 
+        }
     })
 }
 

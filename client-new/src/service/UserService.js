@@ -2,8 +2,8 @@ import axios from './CustomizeAxios'
 
 const axiosJwt = axios.create()
 
-const getAllUserService = () => {
-    return axios.get(`/user/get-all-user`)
+const getAllUserService = (page) => {
+    return axios.get(`/user/get-all-user?page=${page}`)
 }
 
 const addNewUserService = (user) => {
@@ -48,7 +48,9 @@ const logoutUser = () => {
     return axios.post(`/user/logout`)
 }
 
-
+const updatePasswordService = (data) => {
+    return axios.post(`/user/update-password`, data)
+}
 
 export {
     getAllUserService,
@@ -61,5 +63,6 @@ export {
     updateUserService,
     axiosJwt,
     logoutUser,
-    verifyEmailService
+    verifyEmailService,
+    updatePasswordService
 }

@@ -20,7 +20,6 @@ const getAllProductServiceType = (type, page) => {
 }
 
 const getAllProductServiceTypeHomePage = (type, page) => {
-    console.log("page: ", page);
     return axios.get(`/product/get-all-product-type?type=${type}&limit=12&page=${page}`)
 }
 

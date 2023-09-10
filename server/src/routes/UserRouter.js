@@ -13,6 +13,7 @@ router.post('/sign-in', UserController.loginUser)
 router.post('/refresh-token',  UserController.refreshToken)
 router.post('/logout',  UserController.logoutUser)
 router.post('/verify-email',  UserController.verifyEmail)
+router.post('/update-password',  UserController.updatePassword)
 
 
 

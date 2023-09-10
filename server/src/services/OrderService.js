@@ -1,5 +1,6 @@
 const Order = require('../models/OrderProduct')
 const Cart = require('../models/CartModel')
+const Product = require('../models/ProductModel')
 const StatusOrder = require('../models/StatusOrderModel')
 const mongoose = require('mongoose')
 
@@ -17,7 +18,8 @@ const createOrder = (newOrder) => {
 
             let check = await Order.findOne({
                 'orderItems.product': orderItems.product,
-                'orderItems.user': orderItems.user
+                'orderItems.user': orderItems.user,
+                'orderItems.status': 'S1'
             })
 
             if(check) {
@@ -59,7 +61,7 @@ const createOrder = (newOrder) => {
     })
 }
 
-const getAllOrder = () => {
+const getAllOrder = (limit, page, sort, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
             let totalOrder = await Order.count()
@@ -69,14 +71,15 @@ const getAllOrder = () => {
             }).populate({
                 path: "orderItems",
                 populate: {path: 'user'}
-            })
+            }).limit(limit).skip(page * limit)
 
             if(getAllOrder) {
                 resolve({
                     status: 'OK',
                     message: 'Get all order success!',
                     data: getAllOrder,
-                    totalOrder: totalOrder
+                    totalOrder: totalOrder,
+                    maxPage: Math.ceil(totalOrder / limit)
                 })
             }
         } catch (error) {
@@ -195,7 +198,7 @@ const confirmOrder = (id) => {
                 })
             }
 
-            let check = await Order.find({
+            let check = await Order.findOne({
                 _id: id
             })
             
@@ -206,13 +209,22 @@ const confirmOrder = (id) => {
                 })
             }
 
+            let idProduct = check?.orderItems?.product
+            let updateProduct = await Product.findByIdAndUpdate(idProduct,  {
+                $inc : {
+                    'sold' : check?.orderItems?.amount,
+                    'countInStock': -check?.orderItems?.amount
+                }
+            }, { new: true })
+
             let updateOrder = await Order.findByIdAndUpdate(id, {'orderItems.status': 'S2'}, { new: true })
 
             if(updateOrder) {
                 resolve({
                     status: 'OK',
                     message: 'Update order success!',
-                    data: updateOrder
+                    data: updateOrder,
+                    updateProduct
                 })
             }
         } catch (error) {
@@ -220,7 +232,6 @@ const confirmOrder = (id) => {
         }
     })
 }
-
 
 //cart
 const createCart = (newCart) => {

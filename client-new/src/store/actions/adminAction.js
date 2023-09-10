@@ -2,12 +2,12 @@ import actionTypes from './actionType'
 import {getAllUserService, addNewUserService} from '../../service/UserService'
 import { toast } from 'react-toastify'
 
-export const getAllUsers = () => {
+export const getAllUsers = (page) => {
     return async (dispatch, getState) => {
         try {
-            let res = await getAllUserService()
+            let res = await getAllUserService(page)
             if(res && res.status === 'OK') {
-                dispatch(fetchAllUserSuccess(res.data))
+                dispatch(fetchAllUserSuccess(res))
             }else {
                 dispatch(fetchGenderFailed())
             }

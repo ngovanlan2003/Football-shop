@@ -1,6 +1,21 @@
+import { toast } from 'react-toastify'
+import { logoutUser } from '../../../service/UserService'
 import './AdminHeader.scss'
+import * as actions from '../../../store/actions'
+import { connect } from "react-redux"
+import { useNavigate } from 'react-router-dom'
 
-const AdminHeader = () => {
+const AdminHeader = (props) => {
+    const navigation = useNavigate()
+
+    const handleLogoutAdmin = async () => {
+        await logoutUser()
+        props.resetUser()
+        localStorage.removeItem("access_token")
+        toast.success("Đăng xuất thành công!")
+        navigation("/")
+    }
+
     return (
         <div className='admin-header'>
             <div className='content-header'>
@@ -10,10 +25,24 @@ const AdminHeader = () => {
                 </div>
                 <div className='right'>
                     <span>Xin chào Admin!</span>
+                    <i className="logout fa-solid fa-right-from-bracket"
+                        onClick={() => handleLogoutAdmin()}
+                    ></i>
                 </div>
             </div>
         </div>
     )
 }
 
-export default AdminHeader
+function mapStateToProps (state) {
+    return  {
+    }
+}
+
+function mapDispatchToProps (dispatch) {
+    return {
+        resetUser: () => dispatch(actions.resetUser())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminHeader)

@@ -2,16 +2,19 @@ import { useEffect, useState } from "react"
 import Header from "../Header/Header"
 import "./Profile.scss"
 import jwt_decode from "jwt-decode";
-import { getDetailUser, logoutUser, updateUserService } from '../../service/UserService'
+import { getDetailUser, logoutUser, updatePasswordService, updateUserService } from '../../service/UserService'
 import _ from 'lodash';
 import { toast } from "react-toastify";
 import * as actions from '../../store/actions'
 import { connect } from "react-redux"
+import { Button, Modal } from "react-bootstrap";
 
 const Profile = (props) => {
     const [avatar, setAvatar] = useState('')
     const [user, setUser] = useState({})
     const [userCopy, setUserCopy] = useState({})
+    const [showModal, setShowModal] = useState(false)
+    const [updatePassword, setUpdatePassword] = useState({currentPassword: '', newPassword: '', confirmPassword: ''})
 
     useEffect(() => {
         getDetailUserProfile()
@@ -94,13 +97,50 @@ const Profile = (props) => {
         toast.success("Đăng xuất thành công!")
     }
     
+    const handleShowModal = (productId) => {
+        // setIdConfirmProduct(productId)
+        setShowModal(true)
+    }
+    
+    const handleCloseConfirm = () => {
+        setShowModal(false)
+    };
+
+    const handleUpdatePassword = async () => {
+        let {_id} = user
+        let {currentPassword, newPassword, confirmPassword} = updatePassword
+        if(newPassword !== confirmPassword) {
+            toast.error("Mật khẩu không trùng khớp!")
+            return
+        }
+
+        let update = {
+            id: _id,
+            currentPassword,
+            newPassword
+        }
+
+        let res = await updatePasswordService(update)
+
+        if(res && res.status === 'OK') {
+            toast.success("Cập nhật mật khẩu thành công!")
+            handleCloseConfirm()
+            setUpdatePassword({})
+        }
+    }
+
     return ( 
         <div className="profile-container">
             <Header />
             <div className="profile-content container">
                     <div className="profile-header">
-                        <h3>Hồ sơ của tôi</h3>
-                        <span>Quản lý thông tin hồ sơ để bảo mật tài khoản</span>
+                        <div>
+                            <h3>Hồ sơ của tôi</h3>
+                            <span>Quản lý thông tin hồ sơ để bảo mật tài khoản</span>
+                        </div>
+                        <button className="btn btn-primary"
+                            onClick={() => handleShowModal()}
+                        >Đổi mật khẩu</button>
                     </div>
                     <div className="row content-list">
                         <div className="col-8">
@@ -157,6 +197,46 @@ const Profile = (props) => {
                         </div>
                     </div>
             </div>
+            <Modal show={showModal} onHide={handleCloseConfirm} dialogClassName="modal-create-product">
+                <Modal.Header closeButton>
+                <Modal.Title>Cập nhật mật khẩu</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className="row list">
+                        <div className="col-12 item">
+                            <label>Nhập lại mật khẩu</label>
+                            <input type="password" placeholder="..." 
+                                value={updatePassword.currentPassword}
+                                onChange={(e) => setUpdatePassword({...updatePassword, currentPassword: e.target.value})}
+                            />
+                        </div>
+                        <div className="col-12 item">
+                            <label>Mật khẩu mới</label>
+                            <input type="password" placeholder="..."
+                                value={updatePassword.newPassword}
+                                onChange={(e) => setUpdatePassword({...updatePassword, newPassword: e.target.value})}
+                            />
+                        </div>
+                        <div className="col-12 item">
+                            <label>Xác nhận mật khẩu</label>
+                            <input type="password" placeholder="..."
+                                value={updatePassword.confirmPassword}
+                                onChange={(e) => setUpdatePassword({...updatePassword, confirmPassword: e.target.value})}
+                            />
+                        </div>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseConfirm}>
+                    Close
+                </Button>
+                <Button variant="warning" 
+                onClick={handleUpdatePassword}
+                >
+                    Xác nhận
+                </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

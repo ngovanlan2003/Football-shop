@@ -180,7 +180,7 @@ const ManageProduct = (props) => {
                 <table className="table-product-users">
                     <thead>
                         <tr>
-                            <th>Tên sản phẩm</th>
+                            <th style={{width: '300px'}}>Tên sản phẩm</th>
                             <th>Ngày cập nhật</th>
                             <th>Hình ảnh</th>
                             <th>Giá</th>

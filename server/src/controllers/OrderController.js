@@ -17,7 +17,8 @@ const createOrder = async (req, res) => {
 
 const getAllOrder = async (req, res) => {
     try {
-        let responve = await OrderService.getAllOrder()
+        let {limit, page, sort, filter} = req.query
+        let responve = await OrderService.getAllOrder(limit || 8, page || 0, sort, filter)
         return res.status(200).json(responve)
     } catch (err) {
         return res.status(404).json({

@@ -45,7 +45,7 @@ const Statistic = () => {
                         </div>
                         <div className='item'>
                             <div className='left'>
-                                <i class="inventory fa-solid fa-bag-shopping"></i>
+                                <i className="inventory fa-solid fa-bag-shopping"></i>
                             </div>
                             <div className='right'>
                                 <span className='title'>Tồn kho</span>
@@ -54,7 +54,7 @@ const Statistic = () => {
                         </div>
                         <div className='item'>
                             <div className='left'>
-                                <i class="user fa-regular fa-user"></i>
+                                <i className="user fa-regular fa-user"></i>
                             </div>
                             <div className='right'>
                                 <span className='title'>Khách hàng</span>
@@ -63,7 +63,7 @@ const Statistic = () => {
                         </div>
                         <div className='item'>
                             <div className='left'>
-                                <i class="renvenue fa-solid fa-dollar-sign"></i>
+                                <i className="renvenue fa-solid fa-dollar-sign"></i>
                             </div>
                             <div className='right'>
                                 <span className='title'>Doanh thu</span>
